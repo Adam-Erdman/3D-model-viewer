@@ -88,27 +88,60 @@ GLuint RecPrismBox::makeObject()
     glNewList(list, GL_COMPILE);
 
     glLineWidth(2);
+    //Box
+//    glBegin(GL_QUADS);
+//    glVertex3d( 1,  0.5, -0.4);
+//    glVertex3d( 1, -0.5, -0.4);
+//    glVertex3d(-1, -0.5, -0.4);
+//    glVertex3d(-1,  0.5, -0.4);
+//    glEnd();
 
-    glBegin(GL_QUADS);
-    glVertex3d( 1,  0.5, -0.4);
-    glVertex3d( 1, -0.5, -0.4);
-    glVertex3d(-1, -0.5, -0.4);
-    glVertex3d(-1,  0.5, -0.4);
+//    glBegin(GL_QUADS);
+//    glVertex3d( 1,  0.5, 0.4);
+//    glVertex3d( 1, -0.5, 0.4);
+//    glVertex3d(-1, -0.5, 0.4);
+//    glVertex3d(-1,  0.5, 0.4);
+//    glEnd();
+
+//    glBegin(GL_QUADS);
+//    glVertex3d( 1,  0.5, -0.4);   glVertex3d( 1,  0.5, 0.4);
+//    glVertex3d( 1, -0.5, -0.4);   glVertex3d( 1, -0.5, 0.4);
+//    glVertex3d(-1, -0.5, -0.4);   glVertex3d(-1, -0.5, 0.4);
+//    glVertex3d(-1,  0.5, -0.4);   glVertex3d(-1,  0.5, 0.4);
+//    glEnd();
+
+    //Pyramid
+
+    glBegin(GL_TRIANGLES);
+    glVertex3d( 0,  1, 0);
+    glVertex3d( -1, -1, 1);
+    glVertex3d(1, -1, 1);
+
     glEnd();
 
-    glBegin(GL_QUADS);
-    glVertex3d( 1,  0.5, 0.4);
-    glVertex3d( 1, -0.5, 0.4);
-    glVertex3d(-1, -0.5, 0.4);
-    glVertex3d(-1,  0.5, 0.4);
+    glBegin(GL_TRIANGLES);
+    glVertex3d( 0,  1, 0);
+    glVertex3d( 1, -1, 1);
+    glVertex3d( 1 , -1, -1);
+
     glEnd();
 
-    glBegin(GL_QUADS);
-    glVertex3d( 1,  0.5, -0.4);   glVertex3d( 1,  0.5, 0.4);
-    glVertex3d( 1, -0.5, -0.4);   glVertex3d( 1, -0.5, 0.4);
-    glVertex3d(-1, -0.5, -0.4);   glVertex3d(-1, -0.5, 0.4);
-    glVertex3d(-1,  0.5, -0.4);   glVertex3d(-1,  0.5, 0.4);
+    glBegin(GL_TRIANGLES);
+    glVertex3d( 0,  1, 0);
+    glVertex3d(1, -1, -1);
+    glVertex3d(-1, -1, -1);
+    //glVertex3d(-1,  0.5, -0.4);
     glEnd();
+
+    glBegin(GL_TRIANGLES);
+    glVertex3d( 0,  1, 0);
+    glVertex3d( -1, -1, -1);
+    glVertex3d(-1, -1, 1);
+    //glVertex3d(-1,  0.5, -0.4);
+    glEnd();
+
+
+
 
     glEndList();
 

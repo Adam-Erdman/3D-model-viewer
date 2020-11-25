@@ -7,6 +7,8 @@
 #include <QMenuBar>
 #include <QMenu>
 #include <QApplication>
+#include <QLabel>
+#include <QRadioButton>
 
 
 PrismObjWindow::PrismObjWindow(QWidget *parent)
@@ -53,9 +55,29 @@ PrismObjWindow::PrismObjWindow(QWidget *parent)
     //Create slider for zoom
     QSlider *zoom = new QSlider(Qt::Horizontal, this);
     zoom->setMaximum(360);
+    zoom->setMinimum(100);
     zoom->setPageStep(20);
     zoom->setTickPosition(QSlider::TicksBelow);
     connect(zoom, &QSlider::valueChanged, prBox, &RecPrismBox::makeZoomInZoomOut);
+
+    QLabel *label1 = new QLabel(this);
+    label1->setText("Y Axis");
+
+    QLabel *label2 = new QLabel(this);
+    label2->setText("X Axis");
+
+    QLabel *label3 = new QLabel(this);
+    label3->setText("Z Axis");
+
+    QLabel *label4 = new QLabel(this);
+    label4->setText("Color");
+
+    QRadioButton *button1 = new QRadioButton("Box", this);
+    connect(button1, &QRadioButton::isChecked, prBox, &RecPrismBox::makeObject);
+    QRadioButton *button2 = new QRadioButton("Pyramid", this);
+    connect(button2, &QRadioButton::isChecked, prBox, &RecPrismBox::makeObject);
+    QRadioButton *button3 = new QRadioButton("Object3", this);
+    connect(button3, &QRadioButton::isChecked, prBox, &RecPrismBox::makeObject);
 
 
     // place sliders in layout (horizontal)
@@ -63,10 +85,17 @@ PrismObjWindow::PrismObjWindow(QWidget *parent)
 
     // place sliders in layout (vertical)
     QVBoxLayout *vertBoxLyt = new QVBoxLayout();
+    vertBoxLyt->addWidget(label1);
     vertBoxLyt->addWidget(colorSlider);
+    vertBoxLyt->addWidget(label2);
     vertBoxLyt->addWidget(slider2);
+    vertBoxLyt->addWidget(label3);
     vertBoxLyt->addWidget(zoom);
+    vertBoxLyt->addWidget(label4);
     vertBoxLyt->addWidget(actualColorSlider);
+    vertBoxLyt->addWidget(button1);
+    vertBoxLyt->addWidget(button2);
+    vertBoxLyt->addWidget(button3);
 
     // Layout for frame
     QHBoxLayout *frameLyt = new QHBoxLayout(qFrame);

@@ -18,12 +18,13 @@ public slots:
     void                makeYRotateAndLightChange(int degrees);
     void                makeZoomInZoomOut(int degrees);
     void                ChangeColor(int degrees);
+    virtual GLuint      makeObject();
 
 protected:
     void                initializeGL() override;
     void                paintGL() override;
     void                resizeGL(int w, int h) override;
-    virtual GLuint      makeObject();
+
 
 private:
     GLuint  prism_object = 0;
