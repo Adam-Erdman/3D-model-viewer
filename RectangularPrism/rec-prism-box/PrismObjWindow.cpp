@@ -36,6 +36,13 @@ PrismObjWindow::PrismObjWindow(QWidget *parent)
     colorSlider->setTickPosition(QSlider::TicksBelow);
     connect(colorSlider, &QSlider::valueChanged, prBox, &RecPrismBox::makeXRotateAndChangeColor);
 
+    QSlider *actualColorSlider = new QSlider(Qt::Horizontal, this);
+    //actualColorSlider->setMinimum(0);
+    actualColorSlider->setMaximum(360);
+    actualColorSlider->setPageStep(20);
+    actualColorSlider->setTickPosition(QSlider::TicksBelow);
+    connect(actualColorSlider, &QSlider::valueChanged, prBox, &RecPrismBox::ChangeColor);
+
     //Create slider for **TBD
     QSlider *slider2 = new QSlider(Qt::Horizontal, this);
     slider2->setMaximum(360);
@@ -46,7 +53,7 @@ PrismObjWindow::PrismObjWindow(QWidget *parent)
     //Create slider for zoom
     QSlider *zoom = new QSlider(Qt::Horizontal, this);
     zoom->setMaximum(360);
-    zoom->setPageStep(60);
+    zoom->setPageStep(20);
     zoom->setTickPosition(QSlider::TicksBelow);
     connect(zoom, &QSlider::valueChanged, prBox, &RecPrismBox::makeZoomInZoomOut);
 
@@ -59,6 +66,7 @@ PrismObjWindow::PrismObjWindow(QWidget *parent)
     vertBoxLyt->addWidget(colorSlider);
     vertBoxLyt->addWidget(slider2);
     vertBoxLyt->addWidget(zoom);
+    vertBoxLyt->addWidget(actualColorSlider);
 
     // Layout for frame
     QHBoxLayout *frameLyt = new QHBoxLayout(qFrame);

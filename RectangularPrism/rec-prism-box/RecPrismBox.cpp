@@ -1,6 +1,6 @@
 #include "RecPrismBox.h"
 
-#include <objsafe.h>
+//#include <objsafe.h>
 
 
 GLfloat r,g,b;
@@ -123,6 +123,22 @@ GLuint RecPrismBox::makeObject()
 void RecPrismBox::makeXRotateAndChangeColor(int param)
 {
     colorFactor = GLdouble(param % 360);
+
+//    int rtemp = GLint(param % 360);
+//    if (rtemp > 255){
+//        rtemp=rtemp-255;
+//    }
+//    rint = rtemp;
+//    gint = rint-100;
+//    if (gint<0)
+//        gint = 25;
+
+    update();
+}
+
+void RecPrismBox::ChangeColor(int param)
+{
+    //colorFactor = GLdouble(param % 360);
 
     int rtemp = GLint(param % 360);
     if (rtemp > 255){

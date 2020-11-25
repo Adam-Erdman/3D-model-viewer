@@ -1,6 +1,6 @@
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions_1_1>
-#include <QAxBindable>
+//#include <QAxBindable>
 
 class RecPrismBox : public QOpenGLWidget,
               public QOpenGLFunctions_1_1
@@ -17,6 +17,7 @@ public slots:
     void                makeXRotateAndChangeColor(int degrees);
     void                makeYRotateAndLightChange(int degrees);
     void                makeZoomInZoomOut(int degrees);
+    void                ChangeColor(int degrees);
 
 protected:
     void                initializeGL() override;
