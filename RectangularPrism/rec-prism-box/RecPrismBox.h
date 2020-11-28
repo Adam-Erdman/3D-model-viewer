@@ -18,7 +18,12 @@ public slots:
     void                makeYRotateAndLightChange(int degrees);
     void                makeZoomInZoomOut(int degrees);
     void                ChangeColor(int degrees);
+    void                BoxRadio(bool clicked);
+    void                PyramidRadio(bool clicked);
+    void                ConeRadio(bool clicked);
     virtual GLuint      makeObject();
+    virtual GLuint      makeObjectPyramid();
+    virtual GLuint      makeObjectPrism();
 
 protected:
     void                initializeGL() override;

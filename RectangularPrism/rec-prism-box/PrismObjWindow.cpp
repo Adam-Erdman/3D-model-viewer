@@ -73,11 +73,11 @@ PrismObjWindow::PrismObjWindow(QWidget *parent)
     label4->setText("Color");
 
     QRadioButton *button1 = new QRadioButton("Box", this);
-    connect(button1, &QRadioButton::isChecked, prBox, &RecPrismBox::makeObject);
+    connect(button1, &QRadioButton::clicked, prBox, &RecPrismBox::BoxRadio);
     QRadioButton *button2 = new QRadioButton("Pyramid", this);
-    connect(button2, &QRadioButton::isChecked, prBox, &RecPrismBox::makeObject);
-    QRadioButton *button3 = new QRadioButton("Object3", this);
-    connect(button3, &QRadioButton::isChecked, prBox, &RecPrismBox::makeObject);
+    connect(button2, &QRadioButton::clicked, prBox, &RecPrismBox::PyramidRadio);
+    QRadioButton *button3 = new QRadioButton("Prism", this);
+    connect(button3, &QRadioButton::clicked, prBox, &RecPrismBox::ConeRadio);
 
 
     // place sliders in layout (horizontal)

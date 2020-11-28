@@ -1,6 +1,11 @@
 #include "RecPrismBox.h"
 
 //#include <objsafe.h>
+#include <GL/glut.h>
+
+#include <stdio.h>
+
+#include <stdlib.h>
 
 
 GLfloat r,g,b;
@@ -61,6 +66,8 @@ void RecPrismBox::initializeGL()
 
 
 
+
+
 /*!
   Set up the OpenGL view port, matrix mode, etc.
 */
@@ -89,26 +96,48 @@ GLuint RecPrismBox::makeObject()
 
     glLineWidth(2);
     //Box
-//    glBegin(GL_QUADS);
-//    glVertex3d( 1,  0.5, -0.4);
-//    glVertex3d( 1, -0.5, -0.4);
-//    glVertex3d(-1, -0.5, -0.4);
-//    glVertex3d(-1,  0.5, -0.4);
-//    glEnd();
+    glBegin(GL_QUADS);
+    glVertex3d( 1,  0.5, -0.4);
+    glVertex3d( 1, -0.5, -0.4);
+    glVertex3d(-1, -0.5, -0.4);
+    glVertex3d(-1,  0.5, -0.4);
+    glEnd();
 
-//    glBegin(GL_QUADS);
-//    glVertex3d( 1,  0.5, 0.4);
-//    glVertex3d( 1, -0.5, 0.4);
-//    glVertex3d(-1, -0.5, 0.4);
-//    glVertex3d(-1,  0.5, 0.4);
-//    glEnd();
+    glBegin(GL_QUADS);
+    glVertex3d( 1,  0.5, 0.4);
+    glVertex3d( 1, -0.5, 0.4);
+    glVertex3d(-1, -0.5, 0.4);
+    glVertex3d(-1,  0.5, 0.4);
+    glEnd();
 
-//    glBegin(GL_QUADS);
-//    glVertex3d( 1,  0.5, -0.4);   glVertex3d( 1,  0.5, 0.4);
-//    glVertex3d( 1, -0.5, -0.4);   glVertex3d( 1, -0.5, 0.4);
-//    glVertex3d(-1, -0.5, -0.4);   glVertex3d(-1, -0.5, 0.4);
-//    glVertex3d(-1,  0.5, -0.4);   glVertex3d(-1,  0.5, 0.4);
-//    glEnd();
+    glBegin(GL_QUADS);
+    glVertex3d( 1,  0.5, -0.4);   glVertex3d( 1,  0.5, 0.4);
+    glVertex3d( 1, -0.5, -0.4);   glVertex3d( 1, -0.5, 0.4);
+    glVertex3d(-1, -0.5, -0.4);   glVertex3d(-1, -0.5, 0.4);
+    glVertex3d(-1,  0.5, -0.4);   glVertex3d(-1,  0.5, 0.4);
+    glEnd();
+
+
+
+
+
+
+    glEndList();
+
+    return list;
+}
+
+GLuint RecPrismBox::makeObjectPyramid()
+{
+    GLuint list;
+
+    list = glGenLists(1);
+
+    glNewList(list, GL_COMPILE);
+
+    glLineWidth(2);
+
+    glEnd();
 
     //Pyramid
 
@@ -130,17 +159,75 @@ GLuint RecPrismBox::makeObject()
     glVertex3d( 0,  1, 0);
     glVertex3d(1, -1, -1);
     glVertex3d(-1, -1, -1);
-    //glVertex3d(-1,  0.5, -0.4);
+
     glEnd();
 
     glBegin(GL_TRIANGLES);
     glVertex3d( 0,  1, 0);
     glVertex3d( -1, -1, -1);
     glVertex3d(-1, -1, 1);
-    //glVertex3d(-1,  0.5, -0.4);
+
     glEnd();
 
 
+
+
+    glEndList();
+
+    return list;
+}
+
+GLuint RecPrismBox::makeObjectPrism()
+{
+    GLuint list;
+
+    list = glGenLists(1);
+
+    glNewList(list, GL_COMPILE);
+
+    glLineWidth(2);
+
+    glEnd();
+
+    //Pyramid
+
+    glBegin(GL_TRIANGLES);
+    glVertex3d( 0,  1, -1); //top
+    glVertex3d( -1, -1, -1); //bot left
+    glVertex3d(1, -1, -1); // bot  right
+
+    glEnd();
+
+    glBegin(GL_TRIANGLES);
+    glVertex3d( 0,  1, 1); //top
+    glVertex3d( -1, -1, 1); //bot left
+    glVertex3d(1, -1, 1); //bot right
+
+    glEnd();
+
+    glBegin(GL_QUADS);
+    glVertex3d( 0,  1, -1); //top
+    glVertex3d( 0,  1, 1); //top
+    glVertex3d( -1, -1, 1); //bot left
+    glVertex3d( -1, -1, -1); //bot left
+
+    glEnd();
+
+    glBegin(GL_QUADS);
+    glVertex3d( 0,  1, -1); //top
+    glVertex3d( 0,  1, 1); //top
+    glVertex3d(1, -1, -1); // bot  right
+    glVertex3d(1, -1, 1); //bot right
+
+    glEnd();
+
+    glBegin(GL_QUADS);
+    glVertex3d( -1, -1, 1); //bot left
+    glVertex3d( -1, -1, -1); //bot left
+    glVertex3d(1, -1, -1); // bot  right
+    glVertex3d(1, -1, 1); //bot right
+
+    glEnd();
 
 
     glEndList();
@@ -218,6 +305,40 @@ void RecPrismBox::makeZoomInZoomOut(int scale)
     scaleFactor = GLint(scale/100);
     update();
 }
+
+void RecPrismBox::BoxRadio(bool clicked)
+{
+    if  (clicked){
+        initializeOpenGLFunctions();
+        glClearColor(0, 0, 0, 1);
+        prism_object = makeObject();
+        update();
+    }
+
+}
+
+void RecPrismBox::PyramidRadio(bool clicked)
+{
+    if  (clicked){
+        initializeOpenGLFunctions();
+        glClearColor(0, 0, 0, 1);
+        prism_object = makeObjectPyramid();
+        update();
+    }
+
+}
+
+void RecPrismBox::ConeRadio(bool clicked)
+{
+    if  (clicked){
+        initializeOpenGLFunctions();
+        glClearColor(0, 0, 0, 1);
+        prism_object = makeObjectPrism();
+        update();
+    }
+
+}
+
 
 
 
