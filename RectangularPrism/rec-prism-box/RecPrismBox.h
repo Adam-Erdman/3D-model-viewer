@@ -14,8 +14,10 @@ public:
 
 
 public slots:
-    void                makeXRotateAndChangeColor(int degrees);
-    void                makeYRotateAndLightChange(int degrees);
+    void                makeXRotate(int degrees);
+    void                makeYRotate(int degrees);
+    void                makeZRotate(int degrees);
+
     void                makeZoomInZoomOut(int degrees);
     void                ChangeColor(int degrees);
     void                BoxRadio(bool clicked);
@@ -33,8 +35,9 @@ protected:
 
 private:
     GLuint  prism_object = 0;
-    GLdouble colorFactor = 0;
-    GLdouble slider2Factor = 0;
+    GLdouble sliderxFactor = 0;
+    GLdouble slideryFactor = 0;
+    GLdouble sliderzFactor = 0;
     GLdouble zoomFactor = 0;
     GLdouble scaleFactor = 1.00;
 };

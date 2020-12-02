@@ -1,7 +1,7 @@
 #include "RecPrismBox.h"
 
 //#include <objsafe.h>
-#include <GL/glut.h>
+//#include <GL/glut.h>
 
 #include <stdio.h>
 
@@ -45,10 +45,12 @@ void RecPrismBox::paintGL()
     glTranslated(0, 0, -10);
     glScaled(scaleFactor, scaleFactor, scaleFactor);
     glColor3ub(rint, gint, bint);
-    glRotated(colorFactor, 1, 0, 0);
+    glRotated(sliderxFactor, 1, 0, 0);
     glLightfv(GL_LIGHT0, GL_SPECULAR, lightpos);
-    glRotated(slider2Factor, 0, 1, 0);
+    glRotated(slideryFactor, 0, 1, 0);
+    glRotated(sliderzFactor, 0, 0, 1);
     glRotated(zoomFactor, 0, 0, 1);
+
     glCallList(prism_object);
 }
 
@@ -240,28 +242,17 @@ GLuint RecPrismBox::makeObjectPrism()
   make color change and rotate in x axis
 */
 
-void RecPrismBox::makeXRotateAndChangeColor(int param)
+void RecPrismBox::makeXRotate(int param)
 {
-    colorFactor = GLdouble(param % 360);
-
-//    int rtemp = GLint(param % 360);
-//    if (rtemp > 255){
-//        rtemp=rtemp-255;
-//    }
-//    rint = rtemp;
-//    gint = rint-100;
-//    if (gint<0)
-//        gint = 25;
-
+    sliderxFactor = GLdouble(param % 360);
     update();
 }
 
 void RecPrismBox::ChangeColor(int param)
 {
-    //colorFactor = GLdouble(param % 360);
 
-    int rtemp = GLint(param % 360);
-    if (rtemp > 255){
+    int rtemp = param;
+    if (rtemp > 256){
         rtemp=rtemp-255;
     }
     rint = rtemp;
@@ -277,9 +268,9 @@ void RecPrismBox::ChangeColor(int param)
   Make Light change and rotate in Y axis
 */
 
-void RecPrismBox::makeYRotateAndLightChange(int degrees)
+void RecPrismBox::makeYRotate(int degrees)
 {
-    slider2Factor = GLdouble(degrees % 360);
+    slideryFactor = GLdouble(degrees % 360);
     g=GLdouble(degrees/100);
 
     int ltemp = GLint(degrees/100);
@@ -291,6 +282,13 @@ void RecPrismBox::makeYRotateAndLightChange(int degrees)
     lightpos[1] = ltemp;
     lightpos[2] = ltemp+8;
     lightpos[3] = ltemp-5;
+
+    update();
+}
+
+void RecPrismBox::makeZRotate(int degrees)
+{
+    sliderzFactor = GLdouble(degrees % 360);
 
     update();
 }

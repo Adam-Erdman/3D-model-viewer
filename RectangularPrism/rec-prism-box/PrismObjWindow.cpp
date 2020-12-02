@@ -30,44 +30,56 @@ PrismObjWindow::PrismObjWindow(QWidget *parent)
     // Create rectangle prism object
     RecPrismBox *prBox = new RecPrismBox(qFrame, "RectanglePrismBox");
 
-    // Create slider for color change
-    QSlider *colorSlider = new QSlider(Qt::Horizontal, this);
-    colorSlider->setMinimum(0);
-    colorSlider->setMaximum(360);
-    colorSlider->setPageStep(20);
-    colorSlider->setTickPosition(QSlider::TicksBelow);
-    connect(colorSlider, &QSlider::valueChanged, prBox, &RecPrismBox::makeXRotateAndChangeColor);
+    // Create slider for X axis rotation
+    QSlider *sliderXAxis = new QSlider(Qt::Horizontal, this);
+    sliderXAxis->setMinimum(0);
+    sliderXAxis->setMaximum(360);
+    sliderXAxis->setPageStep(20);
+    sliderXAxis->setTickPosition(QSlider::TicksBelow);
+    connect(sliderXAxis, &QSlider::valueChanged, prBox, &RecPrismBox::makeXRotate);
 
     QSlider *actualColorSlider = new QSlider(Qt::Horizontal, this);
     //actualColorSlider->setMinimum(0);
-    actualColorSlider->setMaximum(360);
-    actualColorSlider->setPageStep(20);
+    actualColorSlider->setMaximum(256);
+    actualColorSlider->setPageStep(16);
     actualColorSlider->setTickPosition(QSlider::TicksBelow);
     connect(actualColorSlider, &QSlider::valueChanged, prBox, &RecPrismBox::ChangeColor);
 
+    // Create slider for Z axis rotation
+    QSlider *sliderZAxis = new QSlider(Qt::Horizontal, this);
+    sliderZAxis->setMinimum(0);
+    sliderZAxis->setMaximum(360);
+    sliderZAxis->setPageStep(20);
+    sliderZAxis->setTickPosition(QSlider::TicksBelow);
+    connect(sliderZAxis, &QSlider::valueChanged, prBox, &RecPrismBox::makeZRotate);
+
+
     //Create slider for **TBD
-    QSlider *slider2 = new QSlider(Qt::Horizontal, this);
-    slider2->setMaximum(360);
-    slider2->setPageStep(20);
-    slider2->setTickPosition(QSlider::TicksBelow);
-    connect(slider2, &QSlider::valueChanged, prBox, &RecPrismBox::makeYRotateAndLightChange);
+    QSlider *sliderYAxis = new QSlider(Qt::Horizontal, this);
+    sliderYAxis->setMaximum(360);
+    sliderYAxis->setPageStep(20);
+    sliderYAxis->setTickPosition(QSlider::TicksBelow);
+    connect(sliderYAxis, &QSlider::valueChanged, prBox, &RecPrismBox::makeYRotate);
 
     //Create slider for zoom
     QSlider *zoom = new QSlider(Qt::Horizontal, this);
-    zoom->setMaximum(360);
+    zoom->setMaximum(400);
     zoom->setMinimum(100);
     zoom->setPageStep(20);
     zoom->setTickPosition(QSlider::TicksBelow);
     connect(zoom, &QSlider::valueChanged, prBox, &RecPrismBox::makeZoomInZoomOut);
 
-    QLabel *label1 = new QLabel(this);
-    label1->setText("Y Axis");
+    QLabel *labelX = new QLabel(this);
+    labelX->setText("X Axis");
 
-    QLabel *label2 = new QLabel(this);
-    label2->setText("X Axis");
+    QLabel *labelY = new QLabel(this);
+    labelY->setText("Y Axis");
+
+    QLabel *labelZ = new QLabel(this);
+    labelZ->setText("Z Axis");
 
     QLabel *label3 = new QLabel(this);
-    label3->setText("Z Axis");
+    label3->setText("Zoom in/out");
 
     QLabel *label4 = new QLabel(this);
     label4->setText("Color");
@@ -85,10 +97,12 @@ PrismObjWindow::PrismObjWindow(QWidget *parent)
 
     // place sliders in layout (vertical)
     QVBoxLayout *vertBoxLyt = new QVBoxLayout();
-    vertBoxLyt->addWidget(label1);
-    vertBoxLyt->addWidget(colorSlider);
-    vertBoxLyt->addWidget(label2);
-    vertBoxLyt->addWidget(slider2);
+    vertBoxLyt->addWidget(labelX);
+    vertBoxLyt->addWidget(sliderXAxis);
+    vertBoxLyt->addWidget(labelY);
+    vertBoxLyt->addWidget(sliderYAxis);
+    vertBoxLyt->addWidget(labelZ);
+    vertBoxLyt->addWidget(sliderZAxis);
     vertBoxLyt->addWidget(label3);
     vertBoxLyt->addWidget(zoom);
     vertBoxLyt->addWidget(label4);
