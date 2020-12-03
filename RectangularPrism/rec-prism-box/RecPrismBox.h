@@ -17,6 +17,7 @@ public slots:
     void                makeXRotate(int degrees);
     void                makeYRotate(int degrees);
     void                makeZRotate(int degrees);
+    void                shader(int degrees);
 
     void                makeZoomInZoomOut(int degrees);
     void                ChangeColor(int degrees);
@@ -39,6 +40,9 @@ private:
     GLdouble slideryFactor = 0;
     GLdouble sliderzFactor = 0;
     GLdouble zoomFactor = 0;
+    GLdouble shaderFactor =0;
     GLdouble scaleFactor = 1.00;
+
+
 };
 

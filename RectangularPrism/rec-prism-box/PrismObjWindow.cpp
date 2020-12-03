@@ -69,6 +69,14 @@ PrismObjWindow::PrismObjWindow(QWidget *parent)
     zoom->setTickPosition(QSlider::TicksBelow);
     connect(zoom, &QSlider::valueChanged, prBox, &RecPrismBox::makeZoomInZoomOut);
 
+    //Create slider for shader
+//    QSlider *shader = new QSlider(Qt::Horizontal, this);
+//    shader->setMinimum(0);
+//    shader->setMaximum(15);
+//    shader->setPageStep(1);
+//    shader->setTickPosition(QSlider::TicksBelow);
+//    connect(shader, &QSlider::valueChanged, prBox, &RecPrismBox::shader);
+
     QLabel *labelX = new QLabel(this);
     labelX->setText("X Axis");
 
@@ -84,6 +92,9 @@ PrismObjWindow::PrismObjWindow(QWidget *parent)
     QLabel *label4 = new QLabel(this);
     label4->setText("Color");
 
+//    QLabel *label5 = new QLabel(this);
+//    label5->setText("Shader");
+
     QRadioButton *button1 = new QRadioButton("Box", this);
     connect(button1, &QRadioButton::clicked, prBox, &RecPrismBox::BoxRadio);
     QRadioButton *button2 = new QRadioButton("Pyramid", this);
@@ -97,6 +108,7 @@ PrismObjWindow::PrismObjWindow(QWidget *parent)
 
     // place sliders in layout (vertical)
     QVBoxLayout *vertBoxLyt = new QVBoxLayout();
+    vertBoxLyt->setContentsMargins(0,20,0,0);
     vertBoxLyt->addWidget(labelX);
     vertBoxLyt->addWidget(sliderXAxis);
     vertBoxLyt->addWidget(labelY);
@@ -107,6 +119,8 @@ PrismObjWindow::PrismObjWindow(QWidget *parent)
     vertBoxLyt->addWidget(zoom);
     vertBoxLyt->addWidget(label4);
     vertBoxLyt->addWidget(actualColorSlider);
+//    vertBoxLyt->addWidget(label5);
+//    vertBoxLyt->addWidget(shader);
     vertBoxLyt->addWidget(button1);
     vertBoxLyt->addWidget(button2);
     vertBoxLyt->addWidget(button3);

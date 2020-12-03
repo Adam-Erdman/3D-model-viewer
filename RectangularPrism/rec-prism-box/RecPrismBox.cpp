@@ -257,8 +257,11 @@ void RecPrismBox::ChangeColor(int param)
     }
     rint = rtemp;
     gint = rint-100;
+    bint = 255-rtemp;
     if (gint<0)
         gint = 25;
+    if (bint <0)
+        bint = 25;
 
     update();
 }
@@ -271,19 +274,20 @@ void RecPrismBox::ChangeColor(int param)
 void RecPrismBox::makeYRotate(int degrees)
 {
     slideryFactor = GLdouble(degrees % 360);
-    g=GLdouble(degrees/100);
-
-    int ltemp = GLint(degrees/100);
-    if (ltemp > 15 ){
-        ltemp=15;
-    }
-
-    lightpos[0] = 5.0;
-    lightpos[1] = ltemp;
-    lightpos[2] = ltemp+8;
-    lightpos[3] = ltemp-5;
-
     update();
+    //g=GLdouble(degrees/100);
+
+//    int ltemp = GLint(degrees/100);
+//    if (ltemp > 15 ){
+//        ltemp=15;
+//    }
+
+//    lightpos[0] = 5.0;
+//    lightpos[1] = ltemp;
+//    lightpos[2] = ltemp+8;
+//    lightpos[3] = ltemp-5;
+
+//    update();
 }
 
 void RecPrismBox::makeZRotate(int degrees)
@@ -302,6 +306,36 @@ void RecPrismBox::makeZoomInZoomOut(int scale)
 {
     scaleFactor = GLint(scale/100);
     update();
+}
+
+void RecPrismBox::shader(int degrees)
+{
+//    int ltemp = GLint(degrees/100);
+//    if (ltemp > 15 ){
+//        ltemp=15;
+//    }
+
+//    lightpos[0] = 5.0;
+//    lightpos[1] = ltemp;
+//    lightpos[2] = ltemp+8;
+//    lightpos[3] = ltemp-5;
+//    update();
+//        shaderFactor = GLdouble(degrees % 360);
+//        g=GLdouble(degrees/100);
+//        r=GLdouble(degrees/100);
+//        b=GLdouble(degrees/100);
+        //slideryFactor = GLdouble(degrees % 360);
+        int ltemp = GLint(degrees);
+        if (ltemp > 15 ){
+            ltemp=15;
+        }
+
+        lightpos[0] = 5.0;
+        lightpos[1] = ltemp;
+        lightpos[2] = ltemp+8;
+        lightpos[3] = ltemp-5;
+        //paintGL();
+        update();
 }
 
 void RecPrismBox::BoxRadio(bool clicked)
